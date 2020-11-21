@@ -1,0 +1,39 @@
+{% extends "blog/post_list.html" %}
+
+{% block content %}
+    {% if users %}
+        <ul>
+            {% for item in users %}
+            <li>{{ item.username }}</li><li>{{ item.is_superuser }}</li>
+
+            <strong>
+                {% if item in request.user.subscribed_on.all %}
+
+                    <form method="post">
+
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="unsubscribe" />
+                        <input type="hidden" name="unsubscribe_from" value="{{item.id}}">
+                        <input type="submit" value="UnSubscribe" />
+                    </form>
+
+                {% else %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="subscribe" />
+                        <input type="hidden" name="subscribe_to" value="{{item.id}}">
+                        <input type="submit" value="Subscribe" />
+                    </form>
+                {% endif %}
+
+            </strong>
+
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No users are available!</p>
+    {% endif %}
+{% endblock %}
+
+
+

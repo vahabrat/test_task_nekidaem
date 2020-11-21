@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block title %}
+
+    <title>Test Blog</title>
+  {% endblock %}
+</head>
+
+<body>
+  {% block sidebar %}
+    <nav class="header-content__nav">
+        <ul class="navigation">
+            <li class="navigation__item"><a href ="my_blog">My blog</a></li>
+            <li class="navigation__item"><a href ="news">News</a></li>
+            <li class="navigation__item"><a href ="users">Blogs</a></li>
+        </ul>
+    </nav>
+
+  {% endblock %}
+  {% block content %}
+
+      {% if posts %}
+        <ul>
+            {% for item in posts %}
+                <li>{{ item.title }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts yet!</p>
+    {% endif %}
+
+  {% endblock %}
+</body>
+</html>
+
+
