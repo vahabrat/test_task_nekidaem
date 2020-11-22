@@ -5,7 +5,7 @@ from datetime import date
 
 class User(AbstractUser):
     subscribed_on = models.ManyToManyField('self', related_name='subscribers', blank=True)
-
+    is_read_list = models.ManyToManyField('Post', related_name='is_read_post', blank=True)
 
 class Post (models.Model):
     title = models.CharField('Название', max_length=50)
