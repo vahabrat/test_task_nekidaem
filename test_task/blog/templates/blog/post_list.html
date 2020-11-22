@@ -28,13 +28,18 @@
       {% if posts %}
         <ul>
             {% for item in posts %}
-                <li>{{ item.title }}</li>
+            <li><strong>{{ item.title }}</strong><p>{{ item.text }}</p></li>
             {% endfor %}
         </ul>
     {% else %}
         <p>No posts yet!</p>
     {% endif %}
-
+    <form method = 'post' class="post_form">
+        {% csrf_token %}
+        <input type="text" name="title" class="post_form__item">
+        <input type="text" name="post_text" class="post_form__item">
+        <input type="submit" value="Create post" class="post_form__button">
+    </form>
   {% endblock %}
 </body>
 </html>

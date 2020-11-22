@@ -4,10 +4,11 @@
     {% if users %}
         <ul>
             {% for item in users %}
-            <li>{{ item.username }}</li><li>{{ item.is_superuser }}</li>
+            <li>{{ item.username }}</li>
 
             <strong>
-                {% if item in request.user.subscribed_on.all %}
+                {% if item == request.user %}
+                {% elif item in request.user.subscribed_on.all %}
 
                     <form method="post">
 

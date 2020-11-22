@@ -4,11 +4,29 @@
     {% if posts %}
     <ul>
         {% for post in posts %}
-            <li>{{ post.title }}</li>
+        <li>{{ post.title }}</li>
+
+        <li>
+            {% if post in request.user.is_read_list.all %}
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="as_un_read">
+                <input type="hidden" name="as_un_read" value="{{post.id}}">
+                <input type = "submit" value="Edit as unread">
+            </form>
+            {% else %}
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="as_read">
+                <input type="hidden" name="as_read" value="{{post.id}}">
+                <input type = "submit" value="Edit as read">
+            </form>
+            {% endif %}
+        </li>
         {% endfor %}
     </ul>
-{% else %}
-    <p>No posts are available!</p>
-{% endif %}
+    {% else %}
+        <p>No posts are available!</p>
+    {% endif %}
 {% endblock %}
 
