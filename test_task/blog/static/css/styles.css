@@ -1,0 +1,30 @@
+.navigation{
+    background-color:green;
+    display:flex;
+
+    height:50px;
+    padding:0px;
+    margin:0px;
+}
+
+.navigation__item{
+    display:inline-flex;
+    align-self:center;
+    border-top: 3px solid rgba(0, 0, 0, 0);
+    font-family: Raleway-Bold;
+    font-size: 16px;
+    line-height: 25px;
+    text-transform: uppercase;
+    margin: 0px 20px;
+
+
+}
+
+.navigation__item:hover{
+    border-color: #ff6033;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
