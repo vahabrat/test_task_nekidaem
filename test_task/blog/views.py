@@ -53,14 +53,25 @@ def post_list(request):
 
 
         '''no_errors = True
-    
+
+        if len(request.POST['title']) > 50:
+            more_than_err = "Количество символов превышает допустимое значение!!!!!!"
+            context['error_title'] = more_than_err
+            no_errors = False
+
         if len(request.POST['title']) == 0:
             error_title = 'Это поле не может быть пустым'
             context['error_title'] = error_title
             no_errors = False
 
-        if len(request.POST['post_text']) == 0:  # bool('')False           #bool('adsadasd')True
 
+
+        if len(request.POST['post_text']) > 300:  # bool('')False           #bool('adsadasd')True
+            more_error = 'Количество символов превышает допустимое значение!!!!!!'
+            context['error_post_text'] = more_error
+            no_errors = False
+
+        if len(request.POST['post_text']) == 0:  # bool('')False           #bool('adsadasd')True
             error_post_text = 'Это поле не может быть пустым'
             context['error_post_text'] = error_post_text
             no_errors = False
@@ -68,9 +79,14 @@ def post_list(request):
         if no_errors:
             current_post = Post.objects.create(title=request.POST['title'], text=request.POST['post_text'],
                                                user=request.user)
+        else:
+            title_value=request.POST['title']
+            text_value=request.POST['post_text']
+            context['title_value'] = title_value
+            context['text_value'] = text_value'''
 
         # if len(request.POST['title']) > 0 and len(request.POST['post_text']) > 0:
-        #    Post.objects.create(title=request.POST['title'], text=request.POST['post_text'], user=request.user)'''
+        #    Post.objects.create(title=request.POST['title'], text=request.POST['post_text'], user=request.user)
 
     return render(request, 'blog/post_list.html', context)
 

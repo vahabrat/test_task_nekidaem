@@ -1,0 +1,27 @@
+version: '3'
+services:
+
+  web:
+    build: ./test_task
+    command: python /code/test_task/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  db:
+    image: postgres
+    #volumes:
+    #  - postgres_data:/var/lib/postgresql/data/
+    restart: always
+    environment:
+      - POSTGRES_DATABASE=test_task
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=wrestler1995GR
+    ports:
+      - "5430:5432"
+    expose:
+      - "5430"
+volumes:
+  postgres_data:
