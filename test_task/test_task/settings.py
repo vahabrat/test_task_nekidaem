@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'test_task',
         'USER': 'postgres',
         'PASSWORD':'wrestler1995GR',
-        'HOST':'localhost',
+        'HOST':'db',
         'PORT':'5432',
     }
 }
